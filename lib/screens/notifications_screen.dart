@@ -120,6 +120,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 });},
                 child: CustomScrollView(
                   slivers: [
+
                     (snapshot.data[1] as List).length > 0 ?
                         SliverToBoxAdapter(
                           child: Padding(
