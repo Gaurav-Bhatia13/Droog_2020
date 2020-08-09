@@ -83,8 +83,7 @@ class _HomeState extends State<Home> {
     });
   }
 
-  Widget _createDrawerHeader() {
-
+  Widget _createDrawerHeader(){
     final totalHeight = MediaQuery.of(context).size.height;
     return  Padding(
         padding: EdgeInsets.zero,
@@ -154,8 +153,6 @@ class _HomeState extends State<Home> {
             _scaffoldKey.currentState.showSnackBar(MyThemeData.getSnackBar(text: "Something went wrong"));
             print(e.message);
           }
-
-
         },
       ),
     );

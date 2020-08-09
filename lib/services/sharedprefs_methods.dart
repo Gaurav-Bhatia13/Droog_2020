@@ -60,7 +60,6 @@ class SharedPrefsMethods {
     prefs.setString("lastName", lastName);
     prefs.setString("profilePictureUrl", profilePictureUrl);
     prefs.setString("description", description);
-
     prefs.setInt("isLoggedIn", loggedInStatus.index);
     Constants.firstName = firstName;
     Constants.lastName = lastName;
@@ -79,8 +78,7 @@ class SharedPrefsMethods {
     return {
       "userEmail": prefs.getString("userEmail"),
       "uid": prefs.getString("uid"),
-      "userPhone": prefs.getString("userPhone")
-
+      "userPhone": prefs.getString("userPhone"),
     };
   }
 

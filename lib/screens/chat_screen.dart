@@ -341,6 +341,7 @@ class _PostMessageTileState extends State<PostMessageTile> with  AutomaticKeepAl
   final DatabaseMethods _databaseMethods = DatabaseMethods();
   AnimationController _controller;
   Animation<Offset> _offsetAnimation;
+
   @override
   bool get wantKeepAlive => true;
 
@@ -350,8 +351,6 @@ class _PostMessageTileState extends State<PostMessageTile> with  AutomaticKeepAl
     _controller = AnimationController(vsync: this,duration: Duration(milliseconds: 300));
     _offsetAnimation = Tween<Offset>( begin:const Offset(2, 0.0) ,
       end: Offset.zero,).animate(CurvedAnimation(curve: Curves.linear,parent: _controller));
-
-
   }
   @override
   void dispose() {
@@ -436,7 +435,8 @@ class _PostMessageTileState extends State<PostMessageTile> with  AutomaticKeepAl
             children: getWidgets(width),
           ),
           widget.alignment == Alignment.centerRight ?
-          (widget.isLastMessage ? StreamBuilder<DocumentSnapshot>(stream: widget.documentSnapshot.reference.snapshots(),builder: (_,snapshot){
+          (widget.isLastMessage ? StreamBuilder<DocumentSnapshot>(stream: widget.documentSnapshot.reference.snapshots(),
+            builder: (_,snapshot){
             if(snapshot.hasData){
               if(snapshot.data.data["isSeen"] ?? false){
                 _controller.forward();

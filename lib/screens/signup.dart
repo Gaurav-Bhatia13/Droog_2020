@@ -29,7 +29,7 @@ class SignUp extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: RaisedButton(
-elevation: 5,
+         elevation: 5,
           color:Colors.white,
           child: Container(
             width: MediaQuery.of(context).size.width*.6,
@@ -70,8 +70,8 @@ elevation: 5,
                       userEmail: firebaseUser.email,
                       userPhone: firebaseUser.phoneNumber,
                       uid: firebaseUser.uid,
-
-                      loggedInStatus: LoggedInStatus.loggedIn,user: user);
+                      loggedInStatus: LoggedInStatus.loggedIn,
+                      user: user);
                   //building constants
                   Navigator.pushReplacementNamed(context, Home.route);
                 }
