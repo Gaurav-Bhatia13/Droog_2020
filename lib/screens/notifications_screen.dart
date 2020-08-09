@@ -90,7 +90,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           children: <Widget>[
             FadeInImage(
               image: AssetImage("assets/images/no_updates.png",),
-              placeholder: MemoryImage(kTransparentImage),width: MediaQuery.of(context).size.width*.6,),
+              placeholder: MemoryImage(kTransparentImage),
+              width: MediaQuery.of(context).size.width*.6,
+            ),
 //            Image.asset("assets/images/no_updates.png",width: MediaQuery.of(context).size.width*.6,),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -113,7 +115,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             if (snapshot.hasData) {
               return LiquidPullToRefresh(color: Theme.of(context).primaryColor,
                 onRefresh: () async {
-
                   setState(() {
                     userRequests = _databaseMethods.getRequests(limitTo3: true);
                     userUpdates = _databaseMethods.getUpdates();
