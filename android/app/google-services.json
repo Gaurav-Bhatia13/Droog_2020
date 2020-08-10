@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "554263170658-k1q2pve64cauf1v35ha1nqscgi28343o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutter.droog",
+            "certificate_hash": "863c5343e46f4023de8c21add26d3bee6eac543a"
+          }
+        },
+        {
           "client_id": "554263170658-pnni6kr3tuq2eij6sfi7bbatrliuaje7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

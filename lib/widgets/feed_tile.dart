@@ -62,7 +62,7 @@ class _FeedTileState extends State<FeedTile> {
     setState(() {});
   }
 
-  showOptions() {
+  showOptionsforPostRecievers() {
     showDialog(
         context: context,
         builder: (_) => AlertDialog(
@@ -148,6 +148,91 @@ class _FeedTileState extends State<FeedTile> {
             ));
   }
 
+  showOptionsforPostCreator() {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          contentPadding: EdgeInsets.zero,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              InkWell(
+                  onTap: () async {
+                    try {
+                      await _databaseMethods.deleteAPost(
+                          postId: widget.post.postId);
+                      Navigator.pop(context);
+                    } catch (e) {
+                      // TODO
+                      widget.feedKey.currentState.showSnackBar(
+                          MyThemeData.getSnackBar(
+                              text: "Something went wrong"));
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: ListTile(
+                    leading: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.report,
+                          color: Color(0xff4481bc),
+                        ),
+                      ],
+                    ),
+                    title: Text("Delete"),
+                    subtitle: Text("Delete this Post"),
+                  )),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              FutureBuilder<bool>(
+                  future: _databaseMethods.isDroog(
+                      targetUid: widget.post.postByUid),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      if (snapshot.data) {
+                        return InkWell(
+                          onTap: () async {
+                            try {
+                              await _databaseMethods.disconnectFromUser(
+                                  targetUid: widget.post.postByUid);
+                              Navigator.pop(context);
+                            } catch (e) {
+                              widget.feedKey.currentState.showSnackBar(
+                                  MyThemeData.getSnackBar(
+                                      text: "Something went wrong"));
+                              Navigator.pop(context);
+                              // TODO
+                            }
+                          },
+                          child: ListTile(
+                              leading: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.clear,
+                                    color: Color(0xff4481bc),
+                                  ),
+                                ],
+                              ),
+                              title: Text("Disconnect"),
+                              subtitle: Text(
+                                  "Split from ${widget.post.postByUserName}")),
+                        );
+                      } else {
+                        return Container();
+                      }
+                    } else {
+                      return Container();
+                    }
+                  })
+            ],
+          ),
+        ));
+  }
+
   String getDate() {
     return DateTime.fromMillisecondsSinceEpoch(
                   widget.post.time,
@@ -226,12 +311,22 @@ class _FeedTileState extends State<FeedTile> {
                   ),
                   trailing: widget.post.postByUserName != Constants.userName
                       ? IconButton(
-                          onPressed: showOptions,
+                          onPressed: (){
+                            print("hello2");
+                            showOptionsforPostRecievers();},
                           icon: Icon(
                             Icons.more_vert,
                           ),
                         )
-                      : null,
+                      : IconButton(
+                    onPressed: (){
+                      print("hello");
+                      showOptionsforPostCreator();
+                    },
+                    icon: Icon(
+                      Icons.more_vert,
+                    ),
+                  ),
                 );
               }),
           widget.post.description != ""

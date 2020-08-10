@@ -74,6 +74,8 @@ class _FeedState extends State<Feed> {
                                   .data.documentChanges[0].document));
                         }
                       }
+
+
                     }
 
                     return posts.length != 0 ? LazyLoadScrollView(
