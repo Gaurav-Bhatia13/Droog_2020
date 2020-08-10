@@ -109,6 +109,7 @@ class _UserProfileState extends State<UserProfile>
 
           ),
          selectedTab == 0 ? AskedDoubts(scaffoldKey: scaffoldKey,targetUid: user.uid,) :
+
          SolvedDoubts(targetUid: user.uid,scaffoldKey: scaffoldKey,),
         ],
       ),
